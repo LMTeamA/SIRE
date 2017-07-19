@@ -3,6 +3,7 @@
 #   David Kroell
 #
 
+from Tkinter import *
 from PIL import Image, ImageTk
 
 class Image():
@@ -39,10 +40,25 @@ class Image():
         self.img
 
     #
-    # This method takes a photo and flips it in
-    # the field so that we get a mirror image copy
-    # of the image in the current object.
+    # This method opens up the image on a window pop
+    # up on the user's desktop.
     #
-    def flip(self, image_normal):
-        pass
+    def show(self, height=1000, width=1000):
+
+        h=height
+        w=width
+        
+        root = Tk()
+        
+        dimensions = str(h)+"x"+str(w)
+        root.geometry(dimensions)
+        
+        canvas = Canvas(root,width=(w-1),height=(h-1))
+        canvas.pack()
+        
+        image = ImageTk.PhotoImage(self.img)
+        imagesprite = canvas.create_image(h,w,image=image)
+        root.mainloop()
+        
+        
         
